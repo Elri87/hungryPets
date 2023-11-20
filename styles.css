@@ -1,0 +1,150 @@
+#root {
+  display: flex;
+  gap: 10px;
+}
+
+.navbar {
+  background-color: #008080;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  width: 100%;
+  margin: 0 auto;
+  height: 50px;
+}
+
+.navbar-left {
+  font-size: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar-right {
+  display: flex;
+  padding-right: 30px;
+}
+
+.navbar-tab {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+  font-size: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar-tab:hover {
+  color: black;
+}
+
+h1 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+}
+
+p {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#pets-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 50px;
+}
+
+.pet-container {
+  position: relative;
+  border: 1px solid black;
+  border-radius: 50%;
+  background-color: #008080;
+  width: 220px;
+  height: 330px;
+  text-align: center;
+}
+
+#pet-emoji {
+  font-size: 80px;
+  margin-top: 10px;
+}
+
+h3 {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: -2px;
+  margin-bottom: 10px;
+  font-size: 25px;
+  color: black;
+}
+
+.hunger-meter-container,
+.love-meter-container {
+  display: flex;
+  flex-direction: column;
+  width: 140px;
+  position: relative;
+  padding-top: 2px;
+}
+label {
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+
+  position: relative;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+}
+
+meter {
+  width: 120px;
+  height: 30px;
+  align-items: center;
+  background-color: black;
+  border-radius: 8px;
+  padding: 2px;
+  overflow: hidden;
+  z-index: 2;
+  margin: 2px;
+}
+
+.overlay-hunger {
+  position: relative;
+  border: 1px solid black;
+  height: 100%;
+  width: 0;
+  background-color: red;
+  border-radius: 8px;
+  padding: 8px;
+  overflow: visible;
+  z-index: 1;
+}
+
+.bread {
+  border: 1px solid black;
+  margin-top: 10px;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.footer {
+  margin-top: 100px;
+  margin-bottom: 0;
+}
+footer {
+  /*background-color: #bfe7e7;*/
+  background-color: #a5a8a8;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 15px;
+  padding: 20px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.anchor-tag {
+  text-decoration: none;
+  color: white;
+}
