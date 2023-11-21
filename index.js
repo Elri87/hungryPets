@@ -9,175 +9,259 @@ const pets = [
     id: 1,
     emoji: "🐾",
     name: "Whiskers",
-    Epitaph: "Curiosity didn't just kill the cat; it made Whiskers legendary.",
+    epitaph: "Curiosity didn't just kill the cat; it made Whiskers legendary.",
   },
   {
     id: 2,
     emoji: "🐩",
     name: "Fluffy",
-    Epitaph: "Curiosity didn't just kill the cat; it made Whiskers legendary.",
+    epitaph: "Curiosity didn't just kill the cat; it made Whiskers legendary.",
   },
   {
     id: 3,
     emoji: "🦇",
     name: "Shadow",
-    Epitaph: "In loving memory of Fluffy, forever our cuddle buddy.",
+    epitaph: "In loving memory of Fluffy, forever our cuddle buddy.",
   },
   {
     id: 4,
     emoji: "🧤",
     name: "Mittens",
-    Epitaph: "Gone but never forgotten, our loyal Shadow.",
+    epitaph: "Gone but never forgotten, our loyal Shadow.",
   },
   {
     id: 5,
     emoji: "☀️",
     name: "Sunny ",
-    Epitaph: "Sunny, forever bringing warmth to our hearts.",
+    epitaph: "Sunny, forever bringing warmth to our hearts.",
   },
   {
     id: 6,
     emoji: "🌙",
     name: "Midnight",
-    Epitaph: "Under the midnight sky, our feline friend rests.",
+    epitaph: "Under the midnight sky, our feline friend rests.",
   },
   {
     id: 7,
     emoji: "🍪",
     name: "Oreo",
-    Epitaph: "Oreo, the sweetest cookie in our lives.",
+    epitaph: "Oreo, the sweetest cookie in our lives.",
   },
   {
     id: 8,
     emoji: "🌸",
     name: "Bella",
-    Epitaph: "Beautiful Bella, gone but forever in our hearts.",
+    epitaph: "Beautiful Bella, gone but forever in our hearts.",
   },
   {
     id: 9,
     emoji: "🦁",
     name: "Simba",
-    Epitaph: "Simba, the king of our jungle.",
+    epitaph: "Simba, the king of our jungle.",
   },
   {
     id: 10,
     emoji: "🌕",
     name: "Luna",
-    Epitaph: "Luna, lighting up our darkest nights.",
+    epitaph: "Luna, lighting up our darkest nights.",
   },
+  {
+    id: 11,
+    emoji: "🐶",
+    name: "Charlie",
+    epitaph: "Charlie, a tail-wagging bundle of joy.",
+  },
+  {
+    id: 12,
+    emoji: "🐍",
+    name: "Cleo",
+    epitaph: "Cleo, slithering into our hearts forever.",
+  },
+  {
+    id: 13,
+    emoji: "🎩",
+    name: "Oliver",
+    epitaph: "Oliver, a true gentleman among pets.",
+  },
+  {
+    id: 14,
+    emoji: "🌼",
+    name: "Daisy",
+    epitaph: "Daisy, forever blooming in our memories.",
+  },
+  {
+    id: 14,
+    emoji: "🥊",
+    name: "Rocky",
+    epitaph: "Rocky, our champion of love.",
+  },
+  {
+    id: 15,
+    emoji: "🎃",
+    name: "Pumpkin",
+    epitaph: "Pumpkin, a little spice in our lives.",
+  },
+  {
+    id: 16,
+    emoji: "x",
+    name: "Maximus",
+    epitaph: "Maximus, bravest of the fur warriors.",
+  },
+  {
+    id: 17,
+    emoji: "☕",
+    name: "Mocha",
+    epitaph: "Mocha, brewing happiness in every moment.",
+  },
+  {
+    id: 18,
+    emoji: "🌵",
+    name: "Spike",
+    epitaph: "Spike, the prickly pal we'll never forget.",
+  },
+  {
+    id: 19,
+    emoji: "☁️",
+    name: "Misty",
+    epitaph: "Misty, forever floating in our hearts.",
+  },
+  {
+    id: 20,
+    emoji: "🦁",
+    name: "Leo",
+    epitaph: "Leo, roaring with love and affection.",
+  },
+  {
+    id: 21,
+    emoji: "💰",
+    name: "Penny",
+    epitaph: "Penny, our priceless little friend.",
+  },
+  {
+    id: 22,
+    emoji: "🧁",
+    name: "Cupcake",
+    epitaph: "Cupcake, sweetness personified.",
+  },
+
+  /*Epitaph: "Cupcake, sweetness personified."
+Thor ⚡
+
+Epitaph: "Thor, the thunderous presence in our lives."
+Princess 👑
+
+Epitaph: "Princess, ruling our hearts with grace."
+Mango 🥭
+
+Epitaph: "Mango, a tropical burst of joy."*/
 ];
 
 //First Step - get animals to pop up on the screen
-const petsContainer = document.getElementById("pets-container");
+let petsContainer = document.querySelector("#pets-container");
+let intervalTimeout = [];
 
+//let index = 0;
 //Create the pet element with all its child elements (emoji, name, 2 x meters, button)
-function createPetElement(pet) {
-  const petContainer = document.createElement("div");
+function createPetElement(index) {
+  let loveBarValue = 100;
+  let hungerBarValue = 0;
+
+  const petCards = document.createElement("div");
   //target the id & add a class
-  petContainer.id = `pet-container-${pet.id}`;
-  petContainer.classList.add("pet-container");
+  petCards.className = "pet-cards-alive";
+
   //create emoji div and add emoji
-  const petEmoji = document.createElement("div");
-  petEmoji.id = "pet-emoji";
-  petEmoji.textContent = pet.emoji;
+  let emote = document.createElement("p");
+  //petEmoji.id = "pet-emoji";
+  emote.className = "emoji-icon-alive";
+  emote.textContent = pets[index].emoji;
+  //petEmoji.textContent = pet.emoji;
   //create h3 element for name and add
-  const petName = document.createElement("h3");
-  petName.textContent = pet.name;
+  let petName = document.createElement("h3");
+  petName.className = "pet-name";
+  petName.textContent = pets[index].name;
 
-  //create hunger container that will hold the label + 2 x bars
-  const hungerContainer = document.createElement("div");
-  //hungerContainer.classList.add("meter-container");
-  hungerContainer.classList.add("hunger-container");
+  let labelHunger = document.createElement("label");
+  labelHunger.textContent = "Hunger:";
+  let progressHunger = document.createElement("progress");
+  progressHunger.className = "hunger-bar";
+  progressHunger.max = "100";
+  progressHunger.min = "0";
+  progressHunger.value = "0";
 
-  const hungerLabel = document.createElement("label");
-  hungerLabel.setAttribute("for", "hunger");
-  hungerLabel.textContent = "Hunger";
+  let labelLove = document.createElement("label");
+  labelLove.textContent = "Love:";
+  let progressLove = document.createElement("progress");
+  progressLove.className = "love-bar";
+  progressLove.max = "100";
+  progressLove.min = "0";
+  progressLove.value = "100";
 
-  //creat div that holds the 2 meters that is on top of each other
-  const hungerMeterContainer = document.createElement("div");
-  hungerMeterContainer.classList.add("hunger-meter-container");
-  hungerContainer.appendChild(hungerMeterContainer);
-  //add the meterOverlay, this will be the <div> that changes color
-
-  const hungerMeter = document.createElement("meter");
-  hungerMeter.classList.add("hunger-meter");
-  hungerMeter.value = "";
-  const overlayHunger = document.createElement("div");
-  overlayHunger.classList.add("overlay-hunger");
-
-  hungerContainer.appendChild(hungerLabel);
-  hungerContainer.appendChild(hungerMeter);
-  hungerMeter.appendChild(overlayHunger);
-
-  const loveContainer = document.createElement("div");
-  loveContainer.classList.add("meter-container");
-  //loveContainer.classList.add("love-container");
-
-  const loveLabel = document.createElement("label");
-  loveLabel.setAttribute("for", "love");
-  loveLabel.textContent = "Love";
-
-  //add the meterOverlay, this will be the <div> that changes color for love
-  const meterOverlayLove = document.createElement("div");
-  meterOverlayLove.classList.add("meter-overlay-love");
-
-  /*const greenBarHunger = document.createElement("div");
-  redBarHunger.id = "green-bar-hunger";*/
-
-  const loveIndicator = document.createElement("meter");
-  loveIndicator.classList.add("love-indicator");
-  loveIndicator.value = "";
-
-  loveContainer.appendChild(loveLabel);
-  loveContainer.appendChild(meterOverlayLove);
-  loveContainer.appendChild(loveIndicator);
-
-  const feedButton = document.createElement("button");
-  feedButton.classList.add("bread");
+  let feedButton = document.createElement("button");
+  feedButton.className = "feed";
   //feedButton.id = `feed-button-${pet.id}`; //if I need an id later
   feedButton.textContent = "Feed me 🍞";
 
-  petContainer.appendChild(petEmoji);
-  petContainer.appendChild(petName);
-  petContainer.appendChild(hungerContainer);
-  petContainer.appendChild(loveContainer);
-  petContainer.appendChild(feedButton);
+  let epitaph = document.createElement("epitaph");
+  epitaph.className = "epitaph";
+  epitaph.textContent = `"${pets[index].epitaph}"`;
 
-  return petContainer;
-}
+  petCards.appendChild(emote);
+  petCards.appendChild(petName);
+  petCards.appendChild(labelHunger);
+  petCards.appendChild(progressHunger);
+  petCards.appendChild(labelLove);
+  petCards.appendChild(progressLove);
+  petCards.appendChild(feedButton);
+  petCards.appendChild(epitaph);
 
-//function for meter containers to get color every 3seconds
-function animateMeters() {
-  const overlayContainer = document.querySelectorAll(".overlay-hunger");
+  petsContainer.appendChild(petCards);
+  //index += 1;
 
-  overlayContainer.forEach((container) => {
-    let value = 0;
-    const interval = setInterval(() => {
-      if (value >= 90) {
-        clearInterval(interval);
-      } else {
-        value += 5; // Increment value
-        container.style.width = `${value}%`;
+  const progressInterval = setInterval(() => {
+    loveBarValue = loveBarValue - 1;
+    hungerBarValue = hungerBarValue + 1;
+    progressLove.value = `${loveBarValue}`;
+    progressHunger.value = `${hungerBarValue}`;
+
+    if (loveBarValue === 0 || hungerBarValue === 100) {
+      for (let i = 0; i < intervalTimeout.length; i++) {
+        clearTimeout(intervalTimeout[1]);
       }
-    }, 3000);
+    }
+
+    if (loveBarValue === 0 || hungerBarValue === 100) {
+      petCards.replaceChildren();
+      emote.className = "emote-icon-dead";
+      petCards.className = "pet-cards-dead";
+
+      petCards.appendChild(emote);
+      petCards.appendChild(petName);
+      petCards.appendChild(epitaph);
+
+      clearInterval(progressInterval);
+      //clearInterval(interval); //stops cards from generating
+      for (let i = 0; i < intervalTimeout.length; i++) {
+        clearTimeout(intervalTimeout[i]); //going through all and clearing timeout if animal die
+      }
+    }
+  }, 1000);
+
+  feedButton.addEventListener("click", function() {
+    hungerBarValue = 0;
+    progressHunger.value = `${hungerBarValue}`;
   });
+
+  emote.addEventListener("click", function() {
+    loveBarValue = 100;
+    progressLove.value = `${loveBarValue}`;
+  });
+  //index += 1;
 }
 
-let currentIndex = 0;
-
-function addNextPet() {
-  const currentPet = pets[currentIndex];
-  const petElement = createPetElement(currentPet);
-
-  petsContainer.appendChild(petElement);
-
-  currentIndex = (currentIndex + 1) % pets.length;
-  // Call the animation function after adding a new pet
-  animateMeters();
+//addNextPet();
+//createPetElement(index);
+for (let i = 0; i < pets.length; i++) {
+  let interval = setTimeout(createPetElement, i * 30000, i);
+  intervalTimeout.push(interval);
 }
-
-// Initial display
-addNextPet();
-
-// Set interval to add the next pet every 30 seconds
-setInterval(addNextPet, 30000);
