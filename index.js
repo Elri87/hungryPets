@@ -143,17 +143,54 @@ const pets = [
     name: "Cupcake",
     epitaph: "Cupcake, sweetness personified.",
   },
-
-  /*Epitaph: "Cupcake, sweetness personified."
-Thor ⚡
-
-Epitaph: "Thor, the thunderous presence in our lives."
-Princess 👑
-
-Epitaph: "Princess, ruling our hearts with grace."
-Mango 🥭
-
-Epitaph: "Mango, a tropical burst of joy."*/
+  {
+    id: 23,
+    emoji: "⚡",
+    name: "Thor",
+    epitaph: "Thor, the thunderous presence in our lives.",
+  },
+  {
+    id: 24,
+    emoji: "👑",
+    name: "Princess",
+    epitaph: "Princess, ruling our hearts with grace.",
+  },
+  {
+    id: 25,
+    emoji: "🥭",
+    name: "Mango",
+    epitaph: "Mango, a tropical burst of joy.",
+  },
+  {
+    id: 26,
+    emoji: "🏍️",
+    name: "Harley",
+    epitaph: "Harley, riding into the sunset of our memories.",
+  },
+  {
+    id: 27,
+    emoji: "🌸",
+    name: "Chloe",
+    epitaph: "Chloe, blooming eternally in our garden of love.",
+  },
+  {
+    id: 28,
+    emoji: "⚡",
+    name: "Zeus",
+    epitaph: "Zeus, the god of tail-wagging adventures.",
+  },
+  {
+    id: 29,
+    emoji: "🍪",
+    name: "Cookie",
+    epitaph: "Cookie, always leaving a trail of sweetness.",
+  },
+  {
+    id: 30,
+    emoji: "🌰",
+    name: "Coco",
+    epitaph: "Coco, a nutty ball of love.",
+  },
 ];
 
 //First Step - get animals to pop up on the screen
@@ -165,6 +202,7 @@ let intervalTimeout = [];
 function createPetElement(index) {
   let loveBarValue = 100;
   let hungerBarValue = 0;
+  //let petDead = true;
 
   const petCards = document.createElement("div");
   //target the id & add a class
@@ -183,6 +221,7 @@ function createPetElement(index) {
 
   let labelHunger = document.createElement("label");
   labelHunger.textContent = "Hunger:";
+
   let progressHunger = document.createElement("progress");
   progressHunger.className = "hunger-bar";
   progressHunger.max = "100";
@@ -191,6 +230,7 @@ function createPetElement(index) {
 
   let labelLove = document.createElement("label");
   labelLove.textContent = "Love:";
+
   let progressLove = document.createElement("progress");
   progressLove.className = "love-bar";
   progressLove.max = "100";
@@ -202,9 +242,9 @@ function createPetElement(index) {
   //feedButton.id = `feed-button-${pet.id}`; //if I need an id later
   feedButton.textContent = "Feed me 🍞";
 
-  let epitaph = document.createElement("epitaph");
+  let epitaph = document.createElement("p");
   epitaph.className = "epitaph";
-  epitaph.textContent = `"${pets[index].epitaph}"`;
+  epitaph.textContent = pets[index].epitaph;
 
   petCards.appendChild(emote);
   petCards.appendChild(petName);
@@ -213,22 +253,16 @@ function createPetElement(index) {
   petCards.appendChild(labelLove);
   petCards.appendChild(progressLove);
   petCards.appendChild(feedButton);
-  petCards.appendChild(epitaph);
+  //petCards.appendChild(epitaph);
 
   petsContainer.appendChild(petCards);
   //index += 1;
 
   const progressInterval = setInterval(() => {
-    loveBarValue = loveBarValue - 1;
-    hungerBarValue = hungerBarValue + 1;
+    loveBarValue = loveBarValue - 2;
+    hungerBarValue = hungerBarValue + 2;
     progressLove.value = `${loveBarValue}`;
     progressHunger.value = `${hungerBarValue}`;
-
-    if (loveBarValue === 0 || hungerBarValue === 100) {
-      for (let i = 0; i < intervalTimeout.length; i++) {
-        clearTimeout(intervalTimeout[1]);
-      }
-    }
 
     if (loveBarValue === 0 || hungerBarValue === 100) {
       petCards.replaceChildren();
